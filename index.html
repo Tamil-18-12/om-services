@@ -547,6 +547,7 @@
 
         // Clerk Initialization
         window.addEventListener('load', async function () {
+            console.log("🚀 Clerk Loading Started...");
             if (window.Clerk) {
                 try {
                     await window.Clerk.load({
@@ -558,16 +559,17 @@
                             }
                         }
                     });
+                    console.log("✅ Clerk Loaded Successfully");
 
                     const userButtonDiv = document.getElementById('user-button');
 
                     if (window.Clerk.user) {
-                        // User is signed in
+                        console.log("👤 User Signed In:", window.Clerk.user.id);
                         if (userButtonDiv) {
                             window.Clerk.mountUserButton(userButtonDiv);
                         }
                     } else {
-                        // User is signed out
+                        console.log("👋 User Signed Out");
                         if (userButtonDiv) {
                             userButtonDiv.innerHTML = `
                                 <button id="sign-in-btn" class="join-us-btn" style="background: transparent; border: 2px solid #fcdc3b; margin-right: 10px; color: white !important;">
@@ -580,8 +582,10 @@
                         }
                     }
                 } catch (err) {
-                    console.error("Clerk failed to load:", err);
+                    console.error("❌ Clerk Load Error:", err);
                 }
+            } else {
+                console.error("❌ Clerk window object not found");
             }
             loadHomeReviews();
         });
