@@ -1,7 +1,20 @@
 // API Configuration
-const API_BASE_URL = window.location.origin;
+window.VITE_API_URL = "https://om-services-z0no.onrender.com";
+const API_BASE_URL = window.VITE_API_URL || window.location.origin;
+window.API_BASE_URL = API_BASE_URL;
+
+// Global Fetch Interceptor to handle cross-origin API calls automatically
+const originalFetch = window.fetch;
+window.fetch = function (resource, init) {
+    if (typeof resource === 'string' && resource.startsWith('/api/')) {
+        resource = window.API_BASE_URL + resource;
+    }
+    return originalFetch(resource, init);
+};
 
 const API_ENDPOINTS = {
+
+
     // Auth
     LOGIN: `${API_BASE_URL}/api/auth/login`,
     GET_CURRENT_ADMIN: `${API_BASE_URL}/api/auth/me`,

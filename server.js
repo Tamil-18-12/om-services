@@ -26,6 +26,7 @@ app.use((req, res, next) => {
   const allowedOrigins = [
     "http://localhost:3000",
     "http://localhost:3001",
+    "https://om-services-z0no.onrender.com",
     "https://om-services.onrender.com",
     /\.vercel\.app$/,
   ];
@@ -54,7 +55,7 @@ app.use((req, res, next) => {
       "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com https://cdnjs.cloudflare.com; " +
       "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net data:; " +
       "img-src 'self' data: blob: https://i.imgur.com; " +
-      "connect-src 'self' https://cdn.jsdelivr.net;",
+      "connect-src 'self' https://cdn.jsdelivr.net https://om-services-z0no.onrender.com https://om-services.onrender.com;",
   );
   res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
   next();
